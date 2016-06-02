@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de Controladores y Scope</title>
+    <!-- Cargamos AngularJS-->
+    <script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body ng-app="test">
+    <!-- Asociamos el controlador a la vista -->
+    <div ng-controller="miPrimerControlador">
+        <!--Mensaje -->
+        <p> {{ mensaje }}</p>
+
+        <!-- botón saludar -->
+        <button ng-click="saludar()">Saludar</button>
+
+        <!-- otro mensaje. Aparece en la vista porque no está asociado al controlador con $scope-->
+        <p> {{otroMensaje}}</p>
+    </div>
+
+    <!-- Asociamos el controlador padre -->
+    <div ng-controller="controladorPadre">
+        <!-- botón para enviar evento al controlador hijo -->
+        <button ng-click="notificarHijo()">Notificar al Hijo</button>
+        <!--Asociamos el controlador hijo -->
+        <div ng-controller="controladorHijo">
+            <!-- botón para enviar evento al controlador padre -->
+            <button ng-click="notificarPadre()">Notificar al padre</button>
+        </div>
+    </div>
+
+    <script>
+
+        // Setter de la aplicación
+        angular.module("test", []);
+
+
+        //Controlador 'miPrimerControlador'
+        angular.module("test").controller("miPrimerControlador", function($scope){
+
+            $scope.mensaje = "Soy un mensaje en un controlador.";
+
+            $scope.saludar = function (){
+                alert("Buenas noches");
+            };
+
+            //Esta variable no está publicada en el $scope  y por lo tanto
+            //la vista no tiene acceso a ella.
+            var otroMensaje = "Soy un mensaje más en este controlador";
+        });
+
+        //Controlador Padre
+        angular.module("test").controller("controladorPadre", function ($scope) {
+            // el controlador se suscribe a los eventos emitidos desde el hijo, EventoDesdeHijo.
+            $scope.$on("EventoDesdeHijo", function(evento, dato){
+                alert("Controlador Padre:\n" + dato);
+            });
+            // Enviamos una notificación al controlador padre
+            $scope.notificarHijo = function () {
+                $scope.$broadcast("EventoDesdePadre", "Soy un evento enviado desde el controlador padre.");
+            };
+        });
+
+        //Controlador hijo
+        angular.module("test").controller("controladorHijo", function ($scope) {
+            // el controlador se suscribe a los eventos emitidos desde el padre, EventoDesdePadre
+            $scope.$on("EventoDesdePadre", function (evento, dato) {
+                alert("Controlador Hijo:\n" + dato);
+            });
+            // Enviamos una notificación al controlador hijo.
+            $scope.notificarPadre = function () {
+                $scope.$emit("EventoDesdeHijo", "Soy un evento enviado desde el controlador hijo.");
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Storage</title>
+</head>
+<body>
+    <script>
+
+        //Preguntar si la API está soportada
+        if (typeof (Storage) !== "undefined"){
+
+            //Local Storage
+            // Guardar valor en almacén local
+            //localStorage.setItem("valorLocal", "Soy un valor alamacenado en localStorage");
+            // Recoger valor del almacén local
+            //var mensajeEnLocal = localStorage.getItem("valorLocal");
+            //alert(mensajeEnLocal);
+
+            // Borrar elemento:
+            //localStorage.removeItem("valorLocal")
+
+            //Session Storage
+            // Guardar valor en almacén en sesión
+            sessionStorage.setItem("valorDeSesion", "Soy un valor alamacenado en sesión");
+            // Recoger valor del almacén local
+            var mensajeEnSesión = sessionStorage.getItem("valorDeSesion");
+            alert(mensajeEnSesión);
+        }
+
+
+
+    </script>
+</body>
+</html>

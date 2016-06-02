@@ -1,0 +1,15 @@
+{
+  "name": "ejemplos-angularjs",
+  "version": "1.0.0",
+  "description": "Ejemplos practicos de angularJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "author": "Alma Martinez",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "lite-server": "^2.2.0"
+  }
+}

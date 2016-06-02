@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animaciones</title>
+    <style>
+        /* Definir la regla de la animación:*/
+        @keyframes reglaAnimacion {
+            0% {background-color: deeppink;}
+            25% {background: yellow;}
+            50% {background: greenyellow;}
+            75% {background: aqua;}
+            100% {background: deeppink;}
+        }
+
+        /* hacemos uso de la animación definida*/
+        .mi-animacion{
+            width:200px;
+            height: 200px;
+            animation: reglaAnimacion 8s;
+            background: deeppink;
+        }
+    </style>
+</head>
+<body>
+    <!-- Caja que vamos a animar -->
+    <div class="mi-animacion"></div>
+</body>
+</html>

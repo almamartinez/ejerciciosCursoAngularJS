@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Workers</title>
+</head>
+<body>
+    <script>
+
+        //Comprobar que la API está soportada:
+        if (typeof (Worker) !== "undefined"){
+
+            //Creamos el worker
+            var worker = new Worker("web-workers.js");
+
+            // Nos suscribimos al evento de mensajes:
+            worker.onmessage = function (evento) {
+                console.log(evento.data);
+            };
+        }
+
+
+    </script>
+</body>
+</html>

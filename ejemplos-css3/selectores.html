@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selectores</title>
+    <style>
+        /*Seleccionamos por comienzo de valor de atributo */
+        a[href^="nov"] {color: red;}
+
+        /*Seleccionamos por final de valor de atributo */
+        a[href$="ews"] {text-transform: uppercase;}
+
+        /*Seleccionamos por contenido de valor de atributo */
+        a[href*="tre"] {font-size: 24px;}
+
+        /*Seleccionamos la primera línea*/
+        p::first-line {color:darkcyan;}
+
+        /*Seleccionamos la primera letra*/
+        p::first-letter {font-size: 40px;}
+
+        /*Seleccionamos la primera letra*/
+        p::selection {background:pink; color:grey;}
+
+    </style>
+</head>
+<body>
+<nav>
+    <a href="novedades">Novedades</a>
+    <a href="entrevistas">Entrevistas</a>
+    <a href="reviews">Reviews</a>
+</nav>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In finibus lectus eget neque egestas, nec gravida purus tincidunt. Proin nec posuere lacus, vitae sodales dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam euismod tempus ligula, cursus dapibus lorem viverra cursus. Donec iaculis turpis lorem, in mattis elit vehicula vitae. Curabitur lobortis ullamcorper lacus, malesuada aliquam elit luctus et. Quisque sit amet dapibus nisl. Ut urna eros, lobortis eleifend blandit nec, ultricies sed mauris.</p>
+
+
+</body>
+</html>
