@@ -4,14 +4,14 @@ var controlador = function ($scope,ServicioRecetas) {
     // pasar un manejador a su propiedad then
     ServicioRecetas.obtenerRecetas().then(function (response) {
 
-        //En la propiedad 'data' de la respuesta HTTP tenemos el cuerpo de la misma.
+        //En la propiedad 'data' de la respuesta HTTP tenemos el cuerpo dcd..e la misma.
         $scope.recetas = response.data;
     });
 
     // Guardamos la receta.
-    $scope.guardarUnaReceta = function () {
+    $scope.guardarUnaReceta = function (texto) {
         
-        var receta = { nombre: $scope.nombreReceta };
+        var receta = { nombre: texto };
 
         ServicioRecetas.guardarReceta(receta).then(function(response) {
 
