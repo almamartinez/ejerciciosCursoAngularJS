@@ -1,5 +1,14 @@
-<ul>
-    <li ng-repeat="receta in $ctrl.recetas">
-        {{ receta.nombre }}
-    </li>
-</ul>
+<!--lista de recetas-->
+<div class="row">
+    <div class="twelve columns">
+        <table class="u-full-width">
+            <tbody>
+                <tr ng-repeat="receta in $ctrl.recetas">
+                    <td>
+                        {{ receta.nombre }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

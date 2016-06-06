@@ -1,20 +1,31 @@
-<!--Título de la aplicación-->
-<header>
-    <h1>Mi Cook-i-Book</h1>
-</header>
+<div class="container">
+    <!--Título de la aplicación-->
+    <div class="row">
+        <div class="twelve columns">
+            <header>
+              <h1>My Cook-i-Book</h1>
+            </header>
+        </div>
+    </div>
+     <!--Barra de navegación-->
 
- <!--Barra de navegación-->
-<nav>
-    <ul>
-        <li>
-            <!--Con la directiva ng-link establecemos el nombre de ruta a navegar-->
-            <a ng-link="['MisRecetas']">Mis Recetas</a>
-        </li>
-        <li>
-            <!--Con la directiva ng-link establecemos el nombre de ruta a navegar-->
-            <a ng-link="['NuevaReceta']">Nueva Receta</a>
-        </li>
-    </ul>
-</nav>
- <!--Zona dinámica-->
-<ng-outlet></ng-outlet>
+    <div class="row">
+        <div class="twelve columns">
+            <nav class="barra-navegacion">
+                <ul>
+                    <li>
+                        <!--Con la directiva ng-link establecemos el nombre de ruta a navegar-->
+                        <a ng-link="['MisRecetas']">Mis Recetas</a>
+                    </li>
+                    <li>
+                        <!--Con la directiva ng-link establecemos el nombre de ruta a navegar-->
+                        <a ng-link="['NuevaReceta']">Nueva Receta</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+     <!--Zona dinámica-->
+    <ng-outlet></ng-outlet>
+</div>
