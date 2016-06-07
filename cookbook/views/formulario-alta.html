@@ -1,8 +1,24 @@
 <div>
     <form name="alta">
         <!--Formulario de alta de recetas-->
-        <input type="text" ng-model="texto" required>
-        <button ng-click="notificarTexto()" ng-disabled="alta.$invalid">Aceptar</button>
-        <ingredientes></ingredientes>
+        <label for="nombre-receta">
+            Nombre de la receta
+        </label>
+
+        <input id="nombre-receta"
+               type="text"
+               ng-model="receta.nombre"
+               placeholder="¿Qué vas a cocinar?"
+               required>
+
+        <!--Botón para guardar receta-->
+        <button ng-click="notificarTexto()"
+                ng-disabled="alta.$invalid">
+            Aceptar</button>
+
+        <!--Componente para ingredientes-->
+        <ingredientes coleccion="receta.ingredientes"
+                      nuevo-ingrediente="agregarIngrediente(ingrediente)"
+                      ingrediente-eliminado="eliminarIngrediente(indice)"></ingredientes>
     </form>
 </div>

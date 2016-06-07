@@ -22,6 +22,23 @@ angular.module("cookbook").directive("formularioAlta", function () {
         // podemos hacer manipulación del DOM de la vista.
         link: function (scope) {
 
+            // Creo un nuevo objeto receta:
+            scope.receta = {
+                nombre: "",
+                ingredientes:[]
+            };
+            
+            //Añadimos el ingrediente procedente del componente
+            // a la colección que cuelga de la receta.
+            scope.agregarIngrediente = function (ingrediente) {
+                scope.receta.ingredientes.push(ingrediente);
+            };
+
+            //Eliminamos el ingrediente que está en la posición indicada por le parámetro índice
+            scope.eliminarIngrediente = function (indice) {
+                scope.receta.ingredientes.splice(indice, 1);
+            };
+
             // Manejador del botón 'Aceptar'
             scope.notificarTexto = function () {
 
