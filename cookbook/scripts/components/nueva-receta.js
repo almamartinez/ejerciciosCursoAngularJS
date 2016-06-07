@@ -12,9 +12,7 @@ angular.module("cookbook").component("nuevaReceta",{
       // Guardamos la referencia del componente
       var self = this;
       // Guardamos la receta.
-      self.guardarUnaReceta = function (texto) {
-
-         var receta = { nombre: texto };
+      self.guardarUnaReceta = function (receta) {
 
          ServicioRecetas.guardarReceta(receta).then(function(response) {
 

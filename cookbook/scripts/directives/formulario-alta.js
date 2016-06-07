@@ -43,8 +43,15 @@ angular.module("cookbook").directive("formularioAlta", function () {
             scope.notificarTexto = function () {
 
                 // Notificar al scope padre que se ha hecho click
-                scope.alHacerClick({ valor: scope.texto })
+                scope.alHacerClick({ receta: scope.receta });
             };
+
+            //Validador de la vista. Comprobamos que el formulario tiene los datos
+            // necesarios para gurardar la receta
+            scope.puedoGuardar = function () {
+
+                return scope.receta.nombre && scope.receta.ingredientes.length > 0;
+            }
         }
     };
 });
