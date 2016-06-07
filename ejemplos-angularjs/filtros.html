@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo filtros</title>
+
+    <!-- Cargamos AngularJS-->
+    <script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body ng-app="test">
+
+<div ng-controller="filtros">
+    <div>
+        <label>filtro currency</label>
+        <span>{{ precio | currency }}</span>
+    </div>
+    <div>
+        <label>filtro date</label>
+        <span>{{ ahora | date:'fullDate' }}</span>
+    </div>
+
+    <div>
+        <label>filtro lowercase</label>
+        <span>{{ textoEnMinusculas }}</span>
+    </div>
+
+    <div>
+        <label>filtro uppercase</label>
+        <span>{{ textoEnMayusculas }}</span>
+    </div>
+
+    <div>
+        <label>filtro LetraCapital</label>
+        <span>{{ lipsum | LetraCapital}}</span>
+    </div>
+</div>
+<script>
+
+    //setter del módulo
+    angular.module("test",[]);
+
+    angular.module("test").controller("filtros", function ($scope, $filter) {
+        $scope.precio = 234781334.455525;
+
+        $scope.ahora = new Date();
+
+        $scope.textoEnMinusculas = $filter("lowercase")( "HoLa QuE aSe");
+        $scope.textoEnMayusculas = $filter("uppercase")( "HoLa QuE aSe");
+
+        $scope.lipsum = "holA cArAcolA";
+    });
+
+    angular.module("test").filter("LetraCapital", function () {
+        //Un filtro siempre:
+        //  1. Retorna una función
+        //  2. Espera al menos un parámetro: el dato de entrada
+        return function (texto) {
+            return texto[0].toUpperCase() + texto.substring(1).toLowerCase();
+        }
+    })
+
+</script>
+
+</body>
+</html>
