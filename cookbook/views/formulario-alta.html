@@ -1,6 +1,5 @@
 <div>
-    <form name="alta">
-        <!--Formulario de alta de recetas-->
+
         <label for="nombre-receta">
             Nombre de la receta
         </label>
@@ -13,12 +12,12 @@
 
         <!--Botón para guardar receta-->
         <button ng-click="notificarTexto()"
-                ng-disabled="alta.$invalid">
+                ng-disabled="">
             Aceptar</button>
 
         <!--Componente para ingredientes-->
         <ingredientes coleccion="receta.ingredientes"
                       nuevo-ingrediente="agregarIngrediente(ingrediente)"
                       ingrediente-eliminado="eliminarIngrediente(indice)"></ingredientes>
-    </form>
+
 </div>

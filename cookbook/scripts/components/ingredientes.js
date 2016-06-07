@@ -24,8 +24,12 @@ angular.module("cookbook").component("ingredientes", {
             // Obtengo la tecla pulsada
             var tecla = evento.which || evento.keyCode;
 
-            // Si la tecla que se ha pulsado es el intro
-            if (tecla === 13 && self.ingrediente.nombre){
+            // Si la tecla que se ha pulsado es el intro, el ingrediente tiene un nombre y éste no existe en
+            // la lista, se da de alta
+            
+            if (tecla === 13 &&
+                self.ingrediente.nombre &&
+                !ingredienteExiste(self.ingrediente.nombre)){
 
                 // Notificamos el nuevo ingrediente:
                 self.nuevoIngrediente({"ingrediente": self.ingrediente});
@@ -42,6 +46,18 @@ angular.module("cookbook").component("ingredientes", {
         self.eliminar = function (indice) {
             // Notificamos el índice del ingrediente
             self.ingredienteEliminado ({"indice": indice});
+        };
+
+        // Comprobamos si existe o no el ingrediente indicado
+        function ingredienteExiste(nombreIngrediente) {
+
+
+
+            var coincidencias = self.coleccion.filter(function(ingrediente){
+                return ingrediente.nombre.toLowerCase() === nombreIngrediente.toLowerCase();
+            });
+
+            return coincidencias.length > 0;
         }
     }
 });
