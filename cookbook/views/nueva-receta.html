@@ -1,6 +1,10 @@
 
 <div class="row">
-    <div class="twelve columns">
+    <div class="five columns">
+        <image-picker image-selected="$ctrl.seleccionarImagen(imageFile)"
+                      image-deselected="$ctrl.deseleccionarImagen()"></image-picker>
+    </div>
+    <div class="seven columns">
         <!-- Usamos la directiva que hemos creado -->
         <formulario-alta al-hacer-click="$ctrl.guardarUnaReceta(receta)"></formulario-alta>
     </div>

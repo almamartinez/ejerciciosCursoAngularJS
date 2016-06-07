@@ -23,5 +23,8 @@ angular.module("cookbook").component("misRecetas",{
             });
         }
 
+        //Nuestra función apunta a la función del servicio:
+        self.obtenerRutaImagen = ServicioRecetas.obtenerRutaImagenAbsoluta;
+
     }]
 });

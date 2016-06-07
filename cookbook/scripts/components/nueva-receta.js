@@ -11,10 +11,13 @@ angular.module("cookbook").component("nuevaReceta",{
    controller: function (ServicioRecetas) {
       // Guardamos la referencia del componente
       var self = this;
+
+      // Definimos una variable para el documento de la imagen de la receta que se ha seleccionado.
+      var imagenReceta
       // Guardamos la receta.
       self.guardarUnaReceta = function (receta) {
 
-         ServicioRecetas.guardarReceta(receta).then(function(response) {
+         ServicioRecetas.guardarReceta(receta, imagenReceta).then(function(response) {
 
             // Se guarda bien la receta, vamos a verla a la lista de recetas.
             //Hay que navegar manualmente.
@@ -24,6 +27,17 @@ angular.module("cookbook").component("nuevaReceta",{
             self.$router.navigate(["MisRecetas"]);
             
          });
+
+      };
+
+      //Guarda el documento de imagen indicado para almacenarlo en servidor, junto con la receta al aceptar.
+      self.seleccionarImagen = function (imagen) {
+         imagenReceta = imagen;
+      };
+
+      // Eliminamos el documento de imagen que hubiese seleccionado previamente.
+      self.deseleccionarImagen = function () {
+         imagenReceta = undefined;
       };
    }
 });

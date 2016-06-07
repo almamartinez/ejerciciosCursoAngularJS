@@ -1,8 +1,12 @@
 <!--lista de recetas-->
 <div class="row">
     <div class="twelve columns">
+        <label for="filtroRecetas">Buscar una receta por su nombre</label>
         <!--Filtro de recetas-->
-        <input type="text" placeholder="Buscar una receta" ng-model="valorAFiltrar">
+        <input id="filtroRecetas"
+               type="text"
+               placeholder="Buscar una receta"
+               ng-model="valorAFiltrar">
 
         <!--Lista de recetas-->
         <table class="u-full-width">
@@ -11,7 +15,10 @@
             sólo el valor y busca en todos los campos. Además tb ordena x nombre.-->
                 <tr ng-repeat="receta in $ctrl.recetas | filter:{nombre:valorAFiltrar} | orderBy:'nombre'">
                     <td>
-                        <strong>{{ receta.nombre }}</strong>
+                        <img ng-src="{{ $ctrl.obtenerRutaImagen(receta.rutaImagen)}}" alt="" width="60" height="60">
+                    </td>
+                    <td>
+                        <p><strong>{{ receta.nombre }}</strong></p>
                         <p><small> {{ receta.ingredientes | ResumenIngredientes}}</small></p>
                     </td>
                 </tr>
