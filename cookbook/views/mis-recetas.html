@@ -1,11 +1,18 @@
 <!--lista de recetas-->
 <div class="row">
     <div class="twelve columns">
+        <!--Filtro de recetas-->
+        <input type="text" ng-model="valorAFiltrar">
+
+        <!--Lista de recetas-->
         <table class="u-full-width">
             <tbody>
-                <tr ng-repeat="receta in $ctrl.recetas">
+            <!--Para que filtre sólo por nombre, pasamos el json, si no,
+            sólo el valor y busca en todos los campos. Además tb ordena x nombre.-->
+                <tr ng-repeat="receta in $ctrl.recetas | filter:{nombre:valorAFiltrar} | orderBy:'nombre'">
                     <td>
-                        {{ receta.nombre }}
+                        <strong>{{ receta.nombre }}</strong>
+                        <p><small> {{ receta.ingredientes | ResumenIngredientes}}</small></p>
                     </td>
                 </tr>
             </tbody>

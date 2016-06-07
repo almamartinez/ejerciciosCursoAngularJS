@@ -22,8 +22,7 @@ angular.module("cookbook").component("nuevaReceta",{
             // $router tiene los datos relacionados con la ruta que se está navegando.
             // Puedo ejecutar su función 'navigate()' para hacer una redirección.
             self.$router.navigate(["MisRecetas"]);
-
-
+            
          });
       };
    }
