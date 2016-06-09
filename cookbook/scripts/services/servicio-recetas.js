@@ -1,12 +1,12 @@
 
-angular.module("cookbook").service("ServicioRecetas",function ($http) {
+angular.module("cookbook").service("ServicioRecetas",function ($http, Propiedades) {
     
     //Toda funcionalidad que quieras exponer hacia afuera,
     //tiene que estar publicada en this.
 
     //Obtener la colección de recetas
     this.obtenerRecetas = function () {
-        return $http.get("http://localhost:8000/api/recetas");       
+        return $http.get(Propiedades.urlServidor + Propiedades.endpointRecetas);
         
     };
 
@@ -32,7 +32,7 @@ angular.module("cookbook").service("ServicioRecetas",function ($http) {
             // Subimos la imagen al servidor
 
             promesa = $http
-                .post("http://localhost:8000/upload", datos, configuracion)
+                .post(Propiedades.urlServidor + Propiedades.endpointImagenes, datos, configuracion)
                 .then(function (respuesta){
                     //En ´path´me viene dada la ruta rela tiva de la imagen subida
                     var ruta = respuesta.data.path;
@@ -41,13 +41,13 @@ angular.module("cookbook").service("ServicioRecetas",function ($http) {
                     // el objeto receta antes de guardarla
                     receta.rutaImagen = ruta;
 
-                    return $http.post("http://localhost:8000/api/recetas",receta);
+                    return $http.post(Propiedades.urlServidor + Propiedades.endpointRecetas,receta);
 
             });
 
         }// En caso de no tener imagen
         else{
-            promesa = $http.post("http://localhost:8000/api/recetas",receta);
+            promesa = $http.post(Propiedades.urlServidor + Propiedades.endpointRecetas,receta);
         }
 
         return promesa;
@@ -55,6 +55,6 @@ angular.module("cookbook").service("ServicioRecetas",function ($http) {
 
     //Montamos la ruta absoluta a la imagen idicada
     this.obtenerRutaImagenAbsoluta = function (rutaRelativa) {
-        return rutaRelativa ? ("http://localhost:8000/" + rutaRelativa): undefined;
+        return rutaRelativa ? (Propiedades.urlServidor + "/" + rutaRelativa): undefined;
     };
 });
