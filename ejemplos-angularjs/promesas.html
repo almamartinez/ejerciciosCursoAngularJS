@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promesas</title>
+    <!-- Cargamos AngularJS-->
+    <script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body ng-app="test">
+<div ng-controller="EjemplosPromesas">
+    <div>
+        <button ng-click="resuelveMensaje()">Promesa que resuelve un mensaje</button>
+    </div>
+
+    <div>
+        <button ng-click="rechazaMensaje()">Promesa que rechaza un mensaje</button>
+    </div>
+
+    <div>
+        <button ng-click="obtenerPos()">Promesa que devuelve coordenadas</button>
+    </div>
+
+</div>
+
+<script>
+    // Setter de la aplicación
+    angular.module("test", []);
+
+
+    //Servicio con ejemplos de promesas
+    angular.module("test").service("Promesas", function ($q) {
+        this.mensaje = function () {
+
+            // Creamos el objeto diferido
+            var diferido = $q.defer();
+
+            // simulamos asincronía
+            setTimeout(function () {
+
+                //Resolver la promesa del objeto diferido
+                diferido.resolve("Soy un mensaje en una promesa resuelta.");
+
+            }, 3000);
+
+            //Siempre retormnamos la promesa del objeto diferido
+            return diferido.promise;
+        };
+
+        this.rechazoMensaje = function () {
+
+            // Creamos el objeto diferido
+            var diferido = $q.defer();
+
+            // simulamos asincronía
+            setTimeout(function () {
+
+                //Rechazamos la promesa del objeto diferido
+                diferido.reject("Ha ocurrido un error!! Soy un mensaje en una promesa rechazada.");
+
+            }, 3000);
+
+            //Siempre retormnamos la promesa del objeto diferido
+            return diferido.promise;
+        };
+
+        this.obtenerPosicion = function () {
+            var diferido = $q.defer();
+
+            navigator.geolocation.getCurrentPosition(
+                    function (datos) {
+                        diferido.resolve({"coordenadas": datos.coords});
+                    }
+            );
+
+            return diferido.promise;
+        }
+    });
+
+    //Controlardor con ejemplos de promesas
+    angular.module("test").controller("EjemplosPromesas", function ($scope, Promesas) {
+
+        $scope.resuelveMensaje = function () {
+
+
+            // Usamos 'then()' para trabajar con el valor de la promesa
+            // Como primer parámetro pasamos el manejador que atiende la resolución de la promesa
+            Promesas.mensaje().then(function (datosResueltos) {
+
+                alert(datosResueltos);
+
+            });
+        };
+
+        $scope.rechazaMensaje = function () {
+
+
+            // Usamos 'then()' para trabajar con el valor de la promesa
+            // Como segundo parámetro pasamos el manejador que atiende el rechazo de la promesa
+            Promesas.rechazoMensaje().then(
+                    function (datosResueltos) {
+
+                        alert(datosResueltos);
+
+                    },
+                    function (datosRechazados) {
+
+                        alert(datosRechazados);
+
+                    }
+            );
+        };
+
+        $scope.obtenerPos = function () {
+            Promesas.obtenerPosicion().then(function (coordenadas) {
+                console.log("coordenadas: " + coordenadas.coordenadas);
+            })
+        }
+
+    });
+
+
+</script>
+</body>
+</html>
