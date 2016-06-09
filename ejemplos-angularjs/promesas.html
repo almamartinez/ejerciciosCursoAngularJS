@@ -20,6 +20,9 @@
         <button ng-click="obtenerPos()">Promesa que devuelve coordenadas</button>
     </div>
 
+    <div>
+        <button ng-click="obtenerValorEmpaquetado()">Valor empaquetado en promesa</button>
+    </div>
 </div>
 
 <script>
@@ -73,6 +76,11 @@
             );
 
             return diferido.promise;
+        };
+
+        // Esto es útil para generar stubs y poder trabajar con promesas con datos dummies desde el principio.
+        this.valorEmpaquetadoEnPromesa = function () {
+            return $q.when( { "mensaje": "hola mundo!"});
         }
     });
 
@@ -113,6 +121,13 @@
         $scope.obtenerPos = function () {
             Promesas.obtenerPosicion().then(function (coordenadas) {
                 console.log("coordenadas: " + coordenadas.coordenadas);
+            })
+        }
+
+        //Cuando obtenemos el valor con un When, sólo se resuelve, nunca se rejecta.
+        $scope.obtenerValorEmpaquetado = function () {
+            Promesas.valorEmpaquetadoEnPromesa().then(function (datos) {
+                console.log("valor: " + datos);
             })
         }
 
