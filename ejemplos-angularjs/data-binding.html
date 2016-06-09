@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enlace de Datos</title>
+    <!-- Cargamos AngularJS-->
+    <script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body ng-app="test">
+
+<!--Controlador con ejemplos de Data Binding-->
+<div ng-controller="EnlaceDatos">
+
+    <p><strong> Two-way data binding </strong></p>
+    <p><input type="text" ng-model="textoEnlazadoEnDobleSentido"></p>
+    <p>{{ textoEnlazadoEnDobleSentido }}</p>
+
+
+    <p><strong> Two-way data binding con updateOn</strong></p>
+    <p><input type="text"
+              ng-model="textoEnlazadoEnDobleSentidoConUpdateOn"
+              ng-model-options="{ updateOn: 'blur' }"></p>
+    <p>{{ textoEnlazadoEnDobleSentidoConUpdateOn }}</p>
+
+    <p><strong> Two-way data binding con debounce</strong></p>
+    <p><input type="text"
+              ng-model="textoEnlazadoEnDobleSentidoConDebounce"
+              ng-model-options="{ debounce: 1000 }"></p>
+    <p>{{ textoEnlazadoEnDobleSentidoConDebounce }}</p>
+
+    <p><strong> One-time  binding</strong></p>
+    <p><input type="text"
+              ng-model="oneTimeBinding">
+    <p>{{ ::oneTimeBinding }}</p>
+
+    <!--botón para mostrar en consola el valor del modelo-->
+    <button ng-click="mostrarEnConsola()">mostrar modelo en consola</button>
+</div>
+<script>
+
+    // Setter de la aplicación
+    angular.module("test", []);
+
+
+    //Controlador 'miPrimerControlador'
+    angular.module("test").controller("EnlaceDatos", function($scope){
+
+        $scope.textoEnlazadoEnDobleSentido= "Soy un texto con two-way data binding";
+        $scope.textoEnlazadoEnDobleSentidoConUpdateOn= "Soy un texto con two-way data binding con updateOn";
+        $scope.textoEnlazadoEnDobleSentidoConDebounce= "Soy un texto con two-way data binding con debounce";
+        $scope.oneTimeBinding = "Texto que sincroniza una sola vez";
+
+        $scope.mostrarEnConsola = function () {
+            console.log("$scope.textoEnlazadoEnDobleSentido: " + $scope.textoEnlazadoEnDobleSentido);
+            console.log("$scope.textoEnlazadoEnDobleSentidoConUpdateOn: " + $scope.textoEnlazadoEnDobleSentidoConUpdateOn);
+            console.log("$scope.textoEnlazadoEnDobleSentidoConDebounce: " + $scope.textoEnlazadoEnDobleSentidoConDebounce);
+            console.log("$scope.oneTimeBinding: " + $scope.oneTimeBinding);
+        }
+
+    });
+    </script>
+</body>
+</html>
