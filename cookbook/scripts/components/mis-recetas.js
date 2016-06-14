@@ -21,7 +21,7 @@ angular.module("cookbook").component("misRecetas",{
                 //En la propiedad 'data' de la respuesta HTTP tenemos el cuerpo dcd..e la misma.
                 self.recetas = response.data;
             });
-        }
+        };
 
         //Nuestra función apunta a la función del servicio:
         self.obtenerRutaImagen = ServicioRecetas.obtenerRutaImagenAbsoluta;
